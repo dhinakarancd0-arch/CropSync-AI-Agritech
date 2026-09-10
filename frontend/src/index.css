@@ -1,0 +1,471 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --color-primary-50: #f0fdf4;
+  --color-primary-100: #dcfce7;
+  --color-primary-200: #bbf7d0;
+  --color-primary-500: #22c55e;
+  --color-primary-600: #16a34a;
+  --color-primary-700: #15803d;
+  --color-primary-800: #166534;
+}
+
+:root {
+  --text-xs: 11px;
+  --text-sm: 12px;
+  --text-body: 13.5px;
+  --text-md: 15px;
+  --text-lg: 17px;
+  --text-xl: 24px;
+  --text-2xl: 28px;
+
+  --transition-fast: 150ms;
+  --transition-normal: 200ms;
+  --transition-slow: 300ms;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f8fafc;
+  color: #0f172a;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   PAGE ENTRANCE ANIMATION (Subtle 220ms ease-out)
+   ============================================================ */
+@keyframes pageEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.page-enter-anim {
+  animation: pageEntrance 220ms ease-out forwards;
+}
+
+@keyframes dropdownFade {
+  0% {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-anim {
+  animation: dropdownFade 150ms ease-out forwards;
+}
+
+@keyframes modalScale {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-anim {
+  animation: modalScale 200ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes backdropFade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.backdrop-anim {
+  animation: backdropFade 200ms ease-out forwards;
+}
+
+/* ============================================================
+   TYPOGRAPHY UTILITIES
+   ============================================================ */
+.dash-page-title {
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+.dash-page-subtitle {
+  font-size: 13.5px;
+  font-weight: 400;
+  color: #64748b;
+  line-height: 1.5;
+  margin-top: 4px;
+}
+
+.dash-section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #0f172a;
+  letter-spacing: -0.01em;
+}
+
+.dash-card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* ============================================================
+   SIDEBAR NAVIGATION ITEM SYSTEM
+   ============================================================ */
+.sidebar-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #475569;
+  transition: background-color 180ms ease-out, color 180ms ease-out, transform 180ms ease-out, border-color 180ms ease-out;
+  position: relative;
+  text-decoration: none;
+}
+
+.sidebar-nav-item:hover {
+  background-color: #f1f5f9;
+  color: #0f172a;
+  transform: translateX(2px);
+}
+
+.sidebar-nav-item.active {
+  background-color: #f0fdf4;
+  color: #166534;
+  font-weight: 600;
+  border-left: 3px solid #16a34a;
+  padding-left: 8px;
+}
+
+.sidebar-nav-item.active svg {
+  color: #15803d;
+}
+
+/* ============================================================
+   UNIVERSAL CARD SYSTEM
+   ============================================================ */
+.agri-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 14px 16px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+  transition: border-color 200ms ease-out, box-shadow 200ms ease-out, transform 200ms ease-out;
+}
+
+.agri-card:hover {
+  border-color: #cbd5e1;
+}
+
+.agri-card-interactive {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 14px 16px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+  transition: border-color 200ms ease-out, box-shadow 200ms ease-out, transform 200ms ease-out;
+  cursor: pointer;
+}
+
+.agri-card-interactive:hover {
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+.agri-card-compact {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 10px 12px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.02);
+}
+
+/* Compatibility aliases */
+.sih-card, .apple-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 14px 16px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+  color: #0f172a;
+}
+
+/* ============================================================
+   BUTTON SYSTEM (Consistent 38px height, 13-14px font, 600 weight)
+   ============================================================ */
+.agri-btn-primary, .sih-btn-primary, .apple-btn-primary {
+  background-color: #16a34a;
+  color: #ffffff;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  height: 38px;
+  padding: 0 15px;
+  font-size: 13.5px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  transition: background-color 180ms ease-out, box-shadow 180ms ease-out, transform 100ms ease-out;
+}
+
+.agri-btn-primary:hover, .sih-btn-primary:hover, .apple-btn-primary:hover {
+  background-color: #15803d;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+}
+
+.agri-btn-primary:active, .sih-btn-primary:active, .apple-btn-primary:active {
+  transform: translateY(1px);
+}
+
+.agri-btn-secondary, .sih-btn-secondary, .apple-btn-secondary {
+  background-color: #ffffff;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  height: 38px;
+  padding: 0 15px;
+  font-size: 13.5px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+  transition: background-color 180ms ease-out, border-color 180ms ease-out, box-shadow 180ms ease-out, transform 100ms ease-out;
+}
+
+.agri-btn-secondary:hover, .sih-btn-secondary:hover, .apple-btn-secondary:hover {
+  background-color: #f8fafc;
+  border-color: #94a3b8;
+  color: #0f172a;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+}
+
+.agri-btn-secondary:active, .sih-btn-secondary:active, .apple-btn-secondary:active {
+  transform: translateY(1px);
+}
+
+.agri-btn-danger {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  height: 38px;
+  padding: 0 14px;
+  font-size: 13.5px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: background-color 180ms ease-out, transform 100ms ease-out;
+}
+
+.agri-btn-danger:hover {
+  background-color: #fecaca;
+}
+
+.agri-btn-danger:active {
+  transform: translateY(1px);
+}
+
+/* Sm button variant */
+.agri-btn-sm {
+  height: 32px;
+  padding: 0 11px;
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+/* ============================================================
+   REUSABLE BADGES (11.5–12px, font-weight: 500-600)
+   ============================================================ */
+.badge-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.badge-green {
+  background-color: #f0fdf4;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+}
+
+.badge-blue {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+}
+
+.badge-amber {
+  background-color: #fffbeb;
+  color: #b45309;
+  border: 1px solid #fde68a;
+}
+
+.badge-red {
+  background-color: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
+
+.badge-purple {
+  background-color: #faf5ff;
+  color: #7e22ce;
+  border: 1px solid #e9d5ff;
+}
+
+.badge-gray {
+  background-color: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+
+/* ============================================================
+   FORM INPUTS (Height 40px, font-size 14px)
+   ============================================================ */
+.agri-input {
+  height: 40px;
+  padding: 0 12px;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #0f172a;
+  outline: none;
+  transition: border-color 180ms ease-out, box-shadow 180ms ease-out;
+}
+
+.agri-input:focus {
+  border-color: #16a34a;
+  box-shadow: 0 0 0 2px rgba(22, 163, 74, 0.15);
+}
+
+.agri-select {
+  height: 40px;
+  padding: 0 11px;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #0f172a;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 180ms ease-out, box-shadow 180ms ease-out;
+}
+
+.agri-select:focus {
+  border-color: #16a34a;
+  box-shadow: 0 0 0 2px rgba(22, 163, 74, 0.15);
+}
+
+/* ============================================================
+   TABLE SYSTEM (13–14px primary text, 11–12px header)
+   ============================================================ */
+.agri-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+
+.agri-table th {
+  background-color: #f8fafc;
+  color: #64748b;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 11.5px;
+  letter-spacing: 0.05em;
+  padding: 11px 14px;
+  border-bottom: 1px solid #e2e8f0;
+  text-align: left;
+}
+
+.agri-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #1e293b;
+  vertical-align: middle;
+  font-size: 13.5px;
+}
+
+.agri-table tr:hover td {
+  background-color: #f8fafc;
+}
+
+/* Leaflet map styles */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  z-index: 10;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+::selection {
+  background: #dcfce7;
+  color: #166534;
+}
